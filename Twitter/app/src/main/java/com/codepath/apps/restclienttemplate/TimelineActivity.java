@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -35,14 +36,14 @@ public class TimelineActivity extends AppCompatActivity {
         client = TwitterApp.getRestClient(this);
 
         //find the recycler view
-        rvTweets=findViewById(R.id.rvTweets);
+        rvTweets = findViewById(R.id.rvTweets);
         //init the list of tweets and adapter
         tweets = new ArrayList<>();
         adapter = new TweetAdapter(this, tweets);
         //recycler view set up: layout manager and the adapter
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         rvTweets.setAdapter(adapter);
-        Log.d(TAG," In the onCreate");
+        Log.d(TAG, " In the onCreate");
         populateHomeTimeline();
 
     }
@@ -63,8 +64,17 @@ public class TimelineActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                Log.e(TAG, "onFailure!"+response, throwable);
+                Log.e(TAG, "onFailure!" + response, throwable);
             }
         });
     }
-}
+
+
+        void onLogoutButton() {
+            TwitterApp.getRestClient(this).clearAccessToken();
+            Intent i = new Intent(this, LoginActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // this makes sure the Back button won't work
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+        }
+    }
