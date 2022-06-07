@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -71,7 +72,9 @@ public class TimelineActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.compose) {
-return true;
+            Intent intent = new Intent(this, ComposeActivity.class);
+                    startActivity(intent);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -109,4 +112,3 @@ return true;
             startActivity(i);
         }
     }
-//practicing pull request
