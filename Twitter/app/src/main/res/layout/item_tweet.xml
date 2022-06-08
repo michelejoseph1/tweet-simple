@@ -37,4 +37,12 @@
         android:maxLines="1"
         android:visibility="visible"
         tools:text="This is my tweet!!" />
+
+    <ImageView
+        android:id="@+id/contentImage"
+        android:layout_width="wrap_content"
+        android:layout_height="69dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="4dp"
+        tools:srcCompat="@tools:sample/avatars" />
 </RelativeLayout>

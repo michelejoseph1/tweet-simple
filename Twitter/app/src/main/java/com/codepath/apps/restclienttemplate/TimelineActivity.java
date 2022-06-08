@@ -38,6 +38,28 @@ public class TimelineActivity extends AppCompatActivity {
     TweetAdapter adapter;
     Button logoutButton;
     private final int REQUEST_CODE = 20;
+    private SwipeRefreshLayout swipeContainer;
+
+
+
+//    public void fetchTimelineAsync(int page) {
+//        // Send the network request to fetch the updated data
+//        // `client` here is an instance of Android Async HTTP
+//        // getHomeTimeline is an example endpoint.
+//        client.getHomeTimeLine(new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Headers headers, JSON json) {
+//                populateHomeTimeline();
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+//
+//            }
+//
+//
+//        });
+//    }
 
 
     @Override
@@ -46,6 +68,7 @@ public class TimelineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timeline);
 
         client = TwitterApp.getRestClient(this);
+        swipeContainer = findViewById(R.id.swipeContainer);
 
         //find the recycler view
         rvTweets = findViewById(R.id.rvTweets);
@@ -58,14 +81,25 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets.setAdapter(adapter);
         Log.d(TAG, " In the onCreate");
 
+        populateHomeTimeline();
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //fetchTimelineAsync(0);
+                adapter.clear();
+                populateHomeTimeline();
+                swipeContainer.setRefreshing(false);
+            }
+        });
+
+
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onLogoutButton();
             }
-        });
-        populateHomeTimeline();
 
+        });
     }
 
     @Override
@@ -97,17 +131,20 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     private void populateHomeTimeline() {
+        Log.e("check", "entered pophometimeline");
         client.getHomeTimeLine(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
-                Log.i(TAG, "onSuccess!" + json.toString());
                 JSONArray jsonArray = json.jsonArray;
+                // ...the data has come back, add new items to your adapter...
                 try {
                     tweets.addAll(Tweet.fromJsonArray(jsonArray));
                     adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     Log.e(TAG, "Json exception", e);
                 }
+                // Now we call setRefreshing(false) to signal refresh has finished
+                swipeContainer.setRefreshing(false);
             }
 
             @Override
