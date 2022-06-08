@@ -43,7 +43,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_tweet, parent, false);
-return new ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     //binding values based on position of the element
@@ -52,7 +52,7 @@ return new ViewHolder(view);
         Tweet tweet = tweets.get(position);
         holder.bind(tweet);
 
-        }
+    }
 
     //total #
     @Override
@@ -60,28 +60,33 @@ return new ViewHolder(view);
         return tweets.size();
     }
 
-public class ViewHolder  extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-    ImageView ivProfileImage;
-    TextView tvBody;
-    TextView tvScreenName;
-    ImageView contentImage;
+        ImageView ivProfileImage;
+        TextView tvBody;
+        TextView tvScreenName;
+        ImageView contentImage;
 
 
-    public ViewHolder(@NonNull View itemView) {
-        super(itemView);
-        ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
-        tvBody = itemView.findViewById(R.id.tvBody);
-        tvScreenName = itemView.findViewById(R.id.tvScreenName);
-        contentImage = itemView.findViewById(R.id.contentImage);
-    }
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+            tvBody = itemView.findViewById(R.id.tvBody);
+            tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            contentImage = itemView.findViewById(R.id.contentImage);
+        }
 
-    public void bind(Tweet tweet) {
-        tvBody.setText(tweet.body);
-        tvScreenName.setText(tweet.user.screenName);
-        Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
-        Glide.with(context).load(tweet.tweet_URL).into(contentImage);
-
+        public void bind(Tweet tweet) {
+            tvBody.setText(tweet.body);
+            tvScreenName.setText(tweet.user.screenName);
+            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            Glide.with(context).load(tweet.tweet_URL).into(contentImage);
+            if (tweet.tweet_URL.equals("none")) {
+                contentImage.setVisibility(View.GONE);
+            } else {
+                contentImage.setVisibility(View.VISIBLE);
+            }
+        }
     }
 }
-}
+
