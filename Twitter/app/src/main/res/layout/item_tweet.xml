@@ -35,5 +35,6 @@
         android:layout_toEndOf="@+id/ivProfileImage"
         android:ellipsize="end"
         android:maxLines="1"
+        android:visibility="visible"
         tools:text="This is my tweet!!" />
 </RelativeLayout>

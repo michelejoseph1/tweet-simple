@@ -26,6 +26,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         this.tweets = tweets;
     }
 
+
     //inflating layout
     @NonNull
     @Override
