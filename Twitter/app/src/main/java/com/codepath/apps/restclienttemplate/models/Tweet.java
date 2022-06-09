@@ -15,6 +15,7 @@ public class Tweet {
     public String createdAt;
     public User user;
     public String tweet_URL;
+    public String util;
 
     public Tweet(){}
 
