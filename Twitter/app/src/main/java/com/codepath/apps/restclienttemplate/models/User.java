@@ -10,6 +10,7 @@ public class User {
     public String name;
     public String screenName;
     public String profileImageUrl;
+    public String contentImageUrl;
 
     public User(){}
 

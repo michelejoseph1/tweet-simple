@@ -17,9 +17,11 @@
         android:hint="@string/what_s_happening"
         android:inputType="textMultiLine"
         android:minLines="5"
-        app:counterEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:counterEnabled="true"
+        app:counterMaxLength="5"
+        />
 
     <Button
         android:id="@+id/btnTweet"
