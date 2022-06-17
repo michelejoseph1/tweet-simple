@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--In linearlayout, screen is rendered and hence all the below
+    components come line by line and provide neat layout -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!-- To indicate the user that first MultiAutoCompleteTextView
+         is supported with comma separated this textview is introduced.
+         It just displays Text Separated by Commas at the top -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="What ingredients do you have?"
+        android:textSize="18sp" />
+
+    <!-- 1st MultiAutoCompleteTextView instance identified with
+         multiAutoCompleteTextViewDefault and here when user starts
+         to type, it will show relevant substrings and after user chooses it,
+         the text is ended with "," as comma is the default tokenizer -->
+    <MultiAutoCompleteTextView
+        android:id="@+id/multiAutoCompleteTextViewDefault"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:ems="10"
+        android:hint="Enter ingredients here"
+        android:minHeight="48dp" />
+
+    <ImageButton
+        android:id="@+id/settingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_manage" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="172dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        android:text="generate me recipes!" />
+
+    <!-- 2nd MultiAutoCompleteTextView instance identified with
+         multiAutoCompleteTextViewCustom and here when user starts
+         to type, it will show relevant substrings and after user
+         chooses it, the text is ended with " " as code is done to
+         have space as separator -->
+
+</LinearLayout>

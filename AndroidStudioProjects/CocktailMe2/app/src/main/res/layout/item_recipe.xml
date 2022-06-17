@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivCocktail"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/desc"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/recipeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="29dp"
+        android:layout_toEndOf="@+id/ivCocktail"
+        android:textColor="#455A64"
+        android:textSize="24sp"
+        tools:text="Moskow Mule" />
+
+    <TextView
+        android:id="@+id/tvOverview"
+        android:layout_width="290dp"
+        android:layout_height="89dp"
+        android:layout_below="@+id/recipeTitle"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/ivCocktail"
+        android:fadingEdge="horizontal"
+        android:maxLines="5"
+        tools:text=", 2 parts Malibu rum, 2 parts Tropicana, 1 part Cranberry Juice " />
+
+</RelativeLayout>
